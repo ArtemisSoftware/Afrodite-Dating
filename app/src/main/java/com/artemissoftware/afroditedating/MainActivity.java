@@ -10,9 +10,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.artemissoftware.afroditedating.models.User;
 import com.artemissoftware.afroditedating.util.PreferenceKeys;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     private static final String TAG = "MainActivity";
 
@@ -62,5 +63,20 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.show();
 
         }
+    }
+
+    @Override
+    public void inflateViewProfileFragment(User user) {
+
+        ViewProfileFragment fragment = new ViewProfileFragment();
+
+        Bundle args = new Bundle();
+        args.putParcelable(getString(R.string.intent_user), user);
+        fragment.setArguments(args);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_content_frame, fragment, getString(R.string.tag_fragment_view_profile));
+        transaction.addToBackStack(getString(R.string.tag_fragment_view_profile));
+        transaction.commit();
     }
 }

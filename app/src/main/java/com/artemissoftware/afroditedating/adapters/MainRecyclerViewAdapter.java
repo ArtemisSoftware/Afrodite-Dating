@@ -28,7 +28,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     //vars
     private ArrayList<User> mUsers = new ArrayList<>();
     private Context mContext;
-    //private IMainActivity mInterface;
+    private IMainActivity mInterface;
 
 
     public MainRecyclerViewAdapter(Context context, ArrayList<User> users) {
@@ -64,7 +64,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked on: " + mUsers.get(position).getName());
 
-                //mInterface.inflateViewProfileFragment(mUsers.get(position));
+                mInterface.inflateViewProfileFragment(mUsers.get(position));
             }
         });
     }
@@ -72,7 +72,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        //mInterface = (IMainActivity) mContext;
+        mInterface = (IMainActivity) mContext;
     }
 
     @Override
