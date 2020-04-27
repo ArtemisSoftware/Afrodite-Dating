@@ -2,6 +2,7 @@ package com.artemissoftware.afroditedating;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,7 +21,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         isFirstLogin();
+        init();
     }
+
+    private void init(){
+        HomeFragment homeFragment = new HomeFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_content_frame, homeFragment, getString(R.string.tag_fragment_home));
+        transaction.addToBackStack(getString(R.string.tag_fragment_home));
+        transaction.commit();
+    }
+
 
     private void isFirstLogin(){
         Log.d(TAG, "isFirstLogin: checking if this is the first login");
