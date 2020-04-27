@@ -1,5 +1,6 @@
 package com.artemissoftware.afroditedating;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -9,20 +10,35 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.artemissoftware.afroditedating.models.User;
 import com.artemissoftware.afroditedating.util.PreferenceKeys;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-public class MainActivity extends AppCompatActivity implements IMainActivity{
+public class MainActivity extends AppCompatActivity implements IMainActivity, BottomNavigationViewEx.OnNavigationItemSelectedListener{
 
     private static final String TAG = "MainActivity";
+
+    private BottomNavigationViewEx mBottomNavigationViewEx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mBottomNavigationViewEx = findViewById(R.id.bottom_nav_view);
+        mBottomNavigationViewEx.setOnNavigationItemSelectedListener(this);
         isFirstLogin();
+        initBottomNavigationView();
         init();
+    }
+
+
+    private void initBottomNavigationView(){
+        Log.d(TAG, "initBottomNavigationView: initializing the bottom navigation view");
+        mBottomNavigationViewEx.enableAnimation(false);
+
     }
 
     private void init(){
@@ -78,5 +94,35 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         transaction.replace(R.id.main_content_frame, fragment, getString(R.string.tag_fragment_view_profile));
         transaction.addToBackStack(getString(R.string.tag_fragment_view_profile));
         transaction.commit();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        switch (menuItem.getItemId()){
+
+            case R.id.bottom_nav_home:
+
+                Log.d(TAG, "onNavigationItemSelected: Home fragment");
+                menuItem.setChecked(true);
+                break;
+
+
+            case R.id.bottom_nav_connections:
+
+                Log.d(TAG, "onNavigationItemSelected: Connections fragment");
+                menuItem.setChecked(true);
+                break;
+
+
+            case R.id.bottom_nav_messages:
+
+                Log.d(TAG, "onNavigationItemSelected: Messages fragment");
+                menuItem.setChecked(true);
+                break;
+
+        }
+
+        return false;
     }
 }
