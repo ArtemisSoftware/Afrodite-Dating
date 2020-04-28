@@ -1,13 +1,12 @@
 package com.artemissoftware.afroditedating;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,7 +20,7 @@ import com.artemissoftware.afroditedating.util.Users;
 import java.util.ArrayList;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = "HomeFragment";
 
@@ -31,6 +30,7 @@ public class HomeFragment extends Fragment {
 
     //widgets
     private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     //vars
     private ArrayList<User> mMatches = new ArrayList<>();
@@ -46,7 +46,9 @@ public class HomeFragment extends Fragment {
 
         Log.d(TAG, "onCreateView: started.");
         mRecyclerView = view.findViewById(R.id.recycler_view);
+        mSwipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
 
+        mSwipeRefreshLayout.setOnRefreshListener(this);
         findMatches();
         return view;
     }
@@ -74,5 +76,21 @@ public class HomeFragment extends Fragment {
         //mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerViewAdapter = new MainRecyclerViewAdapter(getActivity(), mMatches);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
+    }
+
+
+    public void scrollToTop(){
+        mRecyclerView.smoothScrollToPosition(0);
+    }
+
+    @Override
+    public void onRefresh() {
+        findMatches();
+        onItemLoadComplete();
+    }
+
+    private void onItemLoadComplete(){
+        mRecyclerViewAdapter.notifyDataSetChanged();
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }

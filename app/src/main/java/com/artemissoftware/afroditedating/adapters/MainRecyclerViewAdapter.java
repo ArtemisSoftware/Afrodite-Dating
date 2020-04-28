@@ -48,7 +48,8 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         Log.d(TAG, "onBindViewHolder: called.");
 
         RequestOptions requestOptions = new RequestOptions()
-                        .placeholder(R.drawable.ic_launcher_background);
+                        .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_foreground);
 
         Glide.with(mContext)
                 .load(mUsers.get(position).getProfile_image())

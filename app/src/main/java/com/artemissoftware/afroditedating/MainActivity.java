@@ -12,9 +12,11 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.artemissoftware.afroditedating.models.FragmentTag;
 import com.artemissoftware.afroditedating.models.Message;
@@ -80,11 +82,75 @@ public class MainActivity extends AppCompatActivity implements IMainActivity,
         init();
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+
+        int backStackCount = mFragmentTags.size();
+
+        if(backStackCount > 1){
+
+            //nav backwards
+            String topFragmentTag = mFragmentTags.get(backStackCount - 1);
+
+            String newTopFragmentTag = mFragmentTags.get(backStackCount - 2);
+
+            setFragmentVisibilities(newTopFragmentTag);
+            mFragmentTags.remove(topFragmentTag);
+
+            mExitCount = 0;
+        }
+        else if(backStackCount == 1){
+
+            String topFragmentTag = mFragmentTags.get(backStackCount - 1);
+
+            if(topFragmentTag.equals(getString(R.string.tag_fragment_home))){
+
+                mHomeFragment.scrollToTop();
+                mExitCount++;
+                Toast.makeText(this, "1 more click to exit", Toast.LENGTH_SHORT).show();
+            }
+            else {
+
+                mExitCount++;
+                Toast.makeText(this, "1 more click to exit", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        if(mExitCount >= 2){
+            super.onBackPressed();
+        }
+    }
+
+
+    private void setNavigationIcon(String tagname){
+
+        Menu menu = mBottomNavigationViewEx.getMenu();
+        MenuItem menuItem = null;
+
+        if(tagname.equals(getString(R.string.tag_fragment_home))){
+
+            Log.d(TAG, "setNavigationIcon: home fragment is visible");
+            menuItem = menu.getItem(HOME_FRAGMENT);
+            menuItem.setChecked(true);
+        }
+        else if(tagname.equals(getString(R.string.tag_fragment_saved_connections))){
+
+            Log.d(TAG, "setNavigationIcon: saved connections fragment is visible");
+            menuItem = menu.getItem(CONNECTIONS_FRAGMENT);
+            menuItem.setChecked(true);
+        }
+        else if(tagname.equals(getString(R.string.tag_fragment_messages))){
+
+            Log.d(TAG, "setNavigationIcon: messages fragment is visible");
+            menuItem = menu.getItem(MESSAGES_FRAGMENT);
+            menuItem.setChecked(true);
+        }
+    }
 
     private void initBottomNavigationView(){
         Log.d(TAG, "initBottomNavigationView: initializing the bottom navigation view");
         mBottomNavigationViewEx.enableAnimation(false);
-
     }
 
 
@@ -92,8 +158,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity,
         Log.d(TAG, "setHeaderImage: setting image");
 
         Glide.with(this).load(R.drawable.couple).into(mHeaderImage);
-
-
     }
 
 
@@ -119,7 +183,28 @@ public class MainActivity extends AppCompatActivity implements IMainActivity,
 
     private void setFragmentVisibilities(String tagName){
 
-        for(int i = 0; i < mFragments.size(); ++i){
+        if(tagName.equals(getString(R.string.tag_fragment_home)))
+            showBottomNavigation();
+
+        else if(tagName.equals(getString(R.string.tag_fragment_saved_connections)))
+            showBottomNavigation();
+
+        else if(tagName.equals(getString(R.string.tag_fragment_messages)))
+            showBottomNavigation();
+
+        else if(tagName.equals(getString(R.string.tag_fragment_settings)))
+            hideBottomNavigation();
+
+        else if(tagName.equals(getString(R.string.tag_fragment_view_profile)))
+            hideBottomNavigation();
+
+        else if(tagName.equals(getString(R.string.tag_fragment_chat)))
+            hideBottomNavigation();
+
+        else if(tagName.equals(getString(R.string.tag_fragment_agreement)))
+            hideBottomNavigation();
+
+        for(int i = 0; i < mFragments.size(); i++){
 
             if(tagName.equals(mFragments.get(i).getTag())){
                 //show
@@ -136,6 +221,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity,
             }
         }
 
+        setNavigationIcon(tagName);
     }
 
     private void setNavigationViewListener(){
@@ -228,6 +314,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity,
         setFragmentVisibilities(getString(R.string.tag_fragment_chat));
     }
 
+
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
@@ -240,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity,
                 Log.d(TAG, "onNavigationItemSelected: Home fragment");
 
                 mFragmentTags.clear();
-                mFragments = new ArrayList<>();
+                mFragmentTags = new ArrayList<>();
                 init();
                 break;
 
@@ -360,4 +448,18 @@ public class MainActivity extends AppCompatActivity implements IMainActivity,
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return false;
     }
+
+
+    private void hideBottomNavigation() {
+        if (mBottomNavigationViewEx != null) {
+            mBottomNavigationViewEx.setVisibility(View.GONE);
+        }
+    }
+
+    private void showBottomNavigation() {
+        if (mBottomNavigationViewEx != null) {
+            mBottomNavigationViewEx.setVisibility(View.VISIBLE);
+        }
+    }
+
 }

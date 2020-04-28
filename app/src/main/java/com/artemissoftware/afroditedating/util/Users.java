@@ -9,10 +9,18 @@ import com.artemissoftware.afroditedating.models.User;
 public class Users {
 
     public User[] USERS = {
+            //,
 
-            Persephone, Cerberus, Poseidon,
-            Medusa, Demeter, Hermes,
-            Apolo, Athena, Catoblepas,
+            //Centaur,
+            Persephone,
+            Poseidon,
+            Medusa,
+            Demeter,
+            Hermes,
+            Apolo,
+            Athena,
+            Catoblepas,
+
             /*
             James, Elizabeth, Robert,
             Carol, Jennifer, Susan,
@@ -53,9 +61,12 @@ public class Users {
     public static final User Medusa = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.medusa).toString(),
             "Medusa", "Creature","Anyone", "Looking");
 
-    public static final User Cerberus = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.cerberus).toString(),
-            "Cerberus", "Creature","Creature", "Looking");
 
+    //public static final User Mermaid = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.mermaid).toString(),
+            //"Mermaid", "Creature","Male", "Looking");
+
+    public static final User Centaur = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.centaur).toString(),
+            "Centaur", "Creature","Female", "Looking");
 
     /*
             Men
