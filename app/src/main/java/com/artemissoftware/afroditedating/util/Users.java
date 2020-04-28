@@ -10,7 +10,7 @@ public class Users {
 
     public User[] USERS = {
 
-            Apolo, Athena, Catoblepas
+            Apolo, Athena, Catoblepas, Medusa, Demeter, Hermes
             /*
             James, Elizabeth, Robert, Carol, Jennifer, Susan, Michael, William, Karen, Joseph, Nancy,
             Charles, Matthew, Sarah, Jessica, Donald, Mary, Paul,  Patricia,   Linda, Steve
@@ -22,13 +22,22 @@ public class Users {
     public static final User Apolo = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.apolo).toString(),
             "Apolo", "Male","Female", "Looking");
 
+    public static final User Hermes = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.hermes).toString(),
+            "Hermes", "Male","Male", "Not Looking");
+
 
     public static final User Athena = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.athena).toString(),
             "Athena", "Female","Male", "Looking");
 
+    public static final User Demeter = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.demeter).toString(),
+            "Demeter", "Female","Female", "Looking");
+
 
     public static final User Catoblepas = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.catoblepas).toString(),
             "Catoblepas", "Creature","Female", "Looking");
+
+    public static final User Medusa = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.medusa).toString(),
+            "Medusa", "Creature","Anyone", "Looking");
 
 
 

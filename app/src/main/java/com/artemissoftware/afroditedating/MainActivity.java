@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.artemissoftware.afroditedating.models.Message;
 import com.artemissoftware.afroditedating.models.User;
 import com.artemissoftware.afroditedating.util.PreferenceKeys;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -97,13 +98,27 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Bo
     }
 
     @Override
+    public void onMessageSelected(Message message) {
+
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        FragmentTransaction transaction;
 
         switch (menuItem.getItemId()){
 
             case R.id.bottom_nav_home:
 
                 Log.d(TAG, "onNavigationItemSelected: Home fragment");
+
+                HomeFragment homeFragment = new HomeFragment();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.main_content_frame, homeFragment, getString(R.string.tag_fragment_home));
+                transaction.addToBackStack(getString(R.string.tag_fragment_home));
+                transaction.commit();
+
                 menuItem.setChecked(true);
                 break;
 
@@ -111,6 +126,13 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Bo
             case R.id.bottom_nav_connections:
 
                 Log.d(TAG, "onNavigationItemSelected: Connections fragment");
+
+                SavedConnectionsFragment savedConnectionsFragment = new SavedConnectionsFragment();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.main_content_frame, savedConnectionsFragment, getString(R.string.tag_fragment_saved_connections));
+                transaction.addToBackStack(getString(R.string.tag_fragment_saved_connections));
+                transaction.commit();
+
                 menuItem.setChecked(true);
                 break;
 
@@ -118,6 +140,13 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Bo
             case R.id.bottom_nav_messages:
 
                 Log.d(TAG, "onNavigationItemSelected: Messages fragment");
+
+                MessagesFragment messagesFragment = new MessagesFragment();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.main_content_frame, messagesFragment, getString(R.string.tag_fragment_messages));
+                transaction.addToBackStack(getString(R.string.tag_fragment_messages));
+                transaction.commit();
+
                 menuItem.setChecked(true);
                 break;
 
