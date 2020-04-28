@@ -65,8 +65,8 @@
             <!-- Top Half of Layout -->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="30dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp">
 
                 <com.like.LikeButton
                     android:layout_width="wrap_content"
@@ -81,8 +81,8 @@
                 </com.like.LikeButton>
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_launcher_background"
                     android:id="@+id/profile_image"

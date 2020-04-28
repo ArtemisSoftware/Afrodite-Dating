@@ -12,8 +12,13 @@ public class Users {
 
             Apolo, Athena, Catoblepas, Medusa, Demeter, Hermes
             /*
-            James, Elizabeth, Robert, Carol, Jennifer, Susan, Michael, William, Karen, Joseph, Nancy,
-            Charles, Matthew, Sarah, Jessica, Donald, Mary, Paul,  Patricia,   Linda, Steve
+            James, Elizabeth, Robert,
+            Carol, Jennifer, Susan,
+            Michael, William, Karen,
+            Joseph, Nancy, Charles,
+            Matthew, Sarah, Jessica,
+            Donald, Mary, Paul,
+            Patricia,   Linda, Steve
 
              */
     };
