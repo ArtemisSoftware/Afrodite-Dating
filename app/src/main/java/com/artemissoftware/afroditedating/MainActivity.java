@@ -99,7 +99,16 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Bo
 
     @Override
     public void onMessageSelected(Message message) {
+        ChatFragment fragment = new ChatFragment();
 
+        Bundle args = new Bundle();
+        args.putParcelable(getString(R.string.intent_message), message);
+        fragment.setArguments(args);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_content_frame, fragment, getString(R.string.tag_fragment_chat));
+        transaction.addToBackStack(getString(R.string.tag_fragment_chat));
+        transaction.commit();
     }
 
     @Override
