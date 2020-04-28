@@ -11,10 +11,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.artemissoftware.afroditedating.models.Message;
 import com.artemissoftware.afroditedating.models.User;
 import com.artemissoftware.afroditedating.util.PreferenceKeys;
+import com.artemissoftware.afroditedating.util.Resources;
+import com.bumptech.glide.Glide;
+import com.google.android.material.navigation.NavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class MainActivity extends AppCompatActivity implements IMainActivity, BottomNavigationViewEx.OnNavigationItemSelectedListener{
@@ -22,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Bo
     private static final String TAG = "MainActivity";
 
     private BottomNavigationViewEx mBottomNavigationViewEx;
+    private ImageView mHeaderImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +36,15 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Bo
 
         mBottomNavigationViewEx = findViewById(R.id.bottom_nav_view);
         mBottomNavigationViewEx.setOnNavigationItemSelectedListener(this);
+
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        View headerView = navigationView.getHeaderView(0);
+        mHeaderImage = headerView.findViewById(R.id.header_image);
+
+
         isFirstLogin();
         initBottomNavigationView();
+        setHeaderImage();
         init();
     }
 
@@ -41,6 +54,16 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Bo
         mBottomNavigationViewEx.enableAnimation(false);
 
     }
+
+
+    private void setHeaderImage(){
+        Log.d(TAG, "setHeaderImage: setting image");
+
+        Glide.with(this).load(R.drawable.couple).into(mHeaderImage);
+
+
+    }
+
 
     private void init(){
         HomeFragment homeFragment = new HomeFragment();
