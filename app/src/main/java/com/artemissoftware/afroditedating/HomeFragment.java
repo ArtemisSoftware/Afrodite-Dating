@@ -89,6 +89,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         onItemLoadComplete();
     }
 
+
     private void onItemLoadComplete(){
         mRecyclerViewAdapter.notifyDataSetChanged();
         mSwipeRefreshLayout.setRefreshing(false);
