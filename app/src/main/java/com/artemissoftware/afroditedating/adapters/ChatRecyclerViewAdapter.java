@@ -1,4 +1,4 @@
-package com.artemissoftware.afroditedating;
+package com.artemissoftware.afroditedating.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.artemissoftware.afroditedating.IMainActivity;
+import com.artemissoftware.afroditedating.R;
 import com.artemissoftware.afroditedating.models.Message;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;

@@ -3,7 +3,6 @@ package com.artemissoftware.afroditedating;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.artemissoftware.afroditedating.adapters.ChatRecyclerViewAdapter;
 import com.artemissoftware.afroditedating.models.Message;
 import com.artemissoftware.afroditedating.models.User;
 import com.artemissoftware.afroditedating.util.PreferenceKeys;

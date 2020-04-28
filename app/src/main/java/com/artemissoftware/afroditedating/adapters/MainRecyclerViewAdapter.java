@@ -15,6 +15,7 @@ import com.artemissoftware.afroditedating.IMainActivity;
 import com.artemissoftware.afroditedating.R;
 import com.artemissoftware.afroditedating.models.User;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
         RequestOptions requestOptions = new RequestOptions()
                         .placeholder(R.drawable.ic_launcher_background)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .error(R.drawable.ic_launcher_foreground);
 
         Glide.with(mContext)

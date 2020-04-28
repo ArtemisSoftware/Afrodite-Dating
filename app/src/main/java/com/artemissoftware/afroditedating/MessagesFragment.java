@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.artemissoftware.afroditedating.adapters.MessagesRecyclerViewAdapter;
 import com.artemissoftware.afroditedating.models.User;
 import com.artemissoftware.afroditedating.util.PreferenceKeys;
 import com.artemissoftware.afroditedating.util.Users;
