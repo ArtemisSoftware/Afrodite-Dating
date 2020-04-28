@@ -3,6 +3,8 @@ package com.artemissoftware.afroditedating;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
@@ -22,12 +24,15 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-public class MainActivity extends AppCompatActivity implements IMainActivity, BottomNavigationViewEx.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements IMainActivity,
+        BottomNavigationViewEx.OnNavigationItemSelectedListener,
+        NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
 
     private BottomNavigationViewEx mBottomNavigationViewEx;
     private ImageView mHeaderImage;
+    private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Bo
         mBottomNavigationViewEx = findViewById(R.id.bottom_nav_view);
         mBottomNavigationViewEx.setOnNavigationItemSelectedListener(this);
 
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = findViewById(R.id.navigation_view);
         View headerView = navigationView.getHeaderView(0);
         mHeaderImage = headerView.findViewById(R.id.header_image);
@@ -44,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Bo
 
         isFirstLogin();
         initBottomNavigationView();
+        setNavigationViewListener();
         setHeaderImage();
         init();
     }
@@ -71,6 +79,15 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Bo
         transaction.replace(R.id.main_content_frame, homeFragment, getString(R.string.tag_fragment_home));
         transaction.addToBackStack(getString(R.string.tag_fragment_home));
         transaction.commit();
+    }
+
+
+    private void setNavigationViewListener(){
+
+        Log.d(TAG, "setNavigationViewListener: initializing navigation drawer listener");
+
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
 
@@ -141,6 +158,37 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Bo
 
         switch (menuItem.getItemId()){
 
+            case R.id.home:
+
+                Log.d(TAG, "onNavigationItemSelected: Home fragment");
+
+                init();
+                break;
+
+            case R.id.settings:
+
+                Log.d(TAG, "onNavigationItemSelected: Settings fragment");
+
+                SettingsFragment settingsFragment = new SettingsFragment();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.main_content_frame, settingsFragment, getString(R.string.tag_fragment_settings));
+                transaction.addToBackStack(getString(R.string.tag_fragment_settings));
+                transaction.commit();
+                break;
+
+            case R.id.agreement:
+
+                Log.d(TAG, "onNavigationItemSelected: Agreement fragment");
+
+                AgreementFragment agreementFragment = new AgreementFragment();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.main_content_frame, agreementFragment, getString(R.string.tag_fragment_agreement));
+                transaction.addToBackStack(getString(R.string.tag_fragment_agreement));
+                transaction.commit();
+                break;
+
+
+
             case R.id.bottom_nav_home:
 
                 Log.d(TAG, "onNavigationItemSelected: Home fragment");
@@ -184,6 +232,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Bo
 
         }
 
+        mDrawerLayout.closeDrawer(GravityCompat.START);
         return false;
     }
 }

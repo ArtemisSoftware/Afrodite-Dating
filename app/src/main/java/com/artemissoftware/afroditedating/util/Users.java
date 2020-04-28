@@ -10,7 +10,8 @@ public class Users {
 
     public User[] USERS = {
 
-            Apolo, Athena, Catoblepas, Medusa, Demeter, Hermes
+            Medusa, Demeter, Hermes,
+            Apolo, Athena, Catoblepas,
             /*
             James, Elizabeth, Robert,
             Carol, Jennifer, Susan,
