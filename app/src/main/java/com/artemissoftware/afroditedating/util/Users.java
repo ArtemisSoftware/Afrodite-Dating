@@ -11,6 +11,8 @@ public class Users {
     public User[] USERS = {
             //,
 
+            Achilles,
+            Minotaur,
 
             Centaur,
             Persephone,
@@ -45,6 +47,10 @@ public class Users {
             "Poseidon", "Male","Female", "Looking");
 
 
+    public static final User Achilles = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.achilles).toString(),
+            "Achilles", "Male","Male / Female", "Looking");
+
+
     public static final User Athena = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.athena).toString(),
             "Athena", "Female","Male", "Looking");
 
@@ -53,6 +59,9 @@ public class Users {
 
     public static final User Persephone = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.persephone).toString(),
             "Persephone", "Female","Male", "Looking");
+
+    public static final User Artemis = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.artemis).toString(),
+            "Artemis", "Female","Male", "Looking");
 
 
 
@@ -68,6 +77,9 @@ public class Users {
 
     public static final User Centaur = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.centaur).toString(),
             "Centaur", "Creature","Female", "Looking");
+
+    public static final User Minotaur = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.minotaur).toString(),
+            "Minotaur", "Creature","Male / Female", "Looking");
 
     /*
             Men
