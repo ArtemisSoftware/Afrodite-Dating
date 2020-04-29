@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.artemissoftware.afroditedating.R;
@@ -56,14 +57,21 @@ public class PhotoFragment extends Fragment {
 
     private void openCamera(){
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        mOutputUri = Uri.fromFile(getOutputMediaFile());
+
+        mOutputUri = FileProvider.getUriForFile(
+                getActivity(),
+                "com.artemissoftware.afroditedating.provider",
+                getOutputMediaFile());
+
+
+        //mOutputUri = Uri.fromFile(getOutputMediaFile());
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mOutputUri);
         startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
     }
 
 
     private static File getOutputMediaFile(){
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "TabianDating");
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "AfroditeDating");
 
         if (!mediaStorageDir.exists()){
             if (!mediaStorageDir.mkdirs()){
@@ -87,6 +95,13 @@ public class PhotoFragment extends Fragment {
             if(data != null){
                 getActivity().setResult(NEW_PHOTO_REQUEST,
                         data.putExtra(getString(R.string.intent_new_camera_photo), mOutputUri.toString()));
+                getActivity().finish();
+            }
+            else{
+
+                Intent photo = new Intent();
+                photo.putExtra(getString(R.string.intent_new_camera_photo), mOutputUri.toString());
+                getActivity().setResult(NEW_PHOTO_REQUEST, photo);
                 getActivity().finish();
             }
         }

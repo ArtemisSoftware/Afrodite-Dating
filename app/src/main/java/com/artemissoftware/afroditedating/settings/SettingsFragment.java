@@ -184,6 +184,45 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
         }
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        Log.d(TAG, "onActivityResult: called.");
+
+        if(resultCode == NEW_PHOTO_REQUEST){
+
+            Log.d(TAG, "onActivityResult: received an activity result from photo request.");
+
+            if(data != null){
+
+                if(data.hasExtra(getString(R.string.intent_new_gallery_photo))){
+
+                    Glide.with(this)
+                            .load(data.getStringExtra(getString(R.string.intent_new_gallery_photo)))
+                            .into(mProfileImage);
+
+                    mSelectedImageUrl = data.getStringExtra(getString(R.string.intent_new_gallery_photo));
+                }
+                else if(data.hasExtra(getString(R.string.intent_new_camera_photo))){
+
+                    Log.d(TAG, "onActivityResult: received an activity result from photo request.");
+
+                    Glide.with(this)
+                            .load(data.getStringExtra(getString(R.string.intent_new_camera_photo)))
+                            .into(mProfileImage);
+
+                    mSelectedImageUrl = data.getStringExtra(getString(R.string.intent_new_camera_photo));
+
+                }
+            }
+        }
+
+
+    }
+
     private void checkPermissions() {
         final boolean cameraGranted =
                 ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)

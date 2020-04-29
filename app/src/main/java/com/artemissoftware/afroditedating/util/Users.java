@@ -11,6 +11,8 @@ public class Users {
     public User[] USERS = {
             //,
 
+            Clotho,
+            Cerberus,
             Achilles,
             Minotaur,
 
@@ -63,6 +65,9 @@ public class Users {
     public static final User Artemis = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.artemis).toString(),
             "Artemis", "Female","Male", "Looking");
 
+    public static final User Clotho = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.clotho).toString(),
+            "Clotho", "Female","Anyone", "Looking");
+
 
 
     public static final User Catoblepas = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.catoblepas).toString(),
@@ -80,6 +85,9 @@ public class Users {
 
     public static final User Minotaur = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.minotaur).toString(),
             "Minotaur", "Creature","Male / Female", "Looking");
+
+    public static final User Cerberus = new User(Uri.parse("android.resource://com.artemissoftware.afroditedating/" + R.drawable.cerberus).toString(),
+            "Cerberus", "Creature","Female", "Looking");
 
     /*
             Men
