@@ -20,4 +20,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="viewParent.headerText">
+        <item name="android:textColor">@color/darkGrey</item>
+        <item name="android:textSize">@dimen/headerTextSize</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

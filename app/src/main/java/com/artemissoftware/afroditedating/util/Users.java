@@ -11,6 +11,7 @@ public class Users {
     public User[] USERS = {
             //,
 
+            Artemis,
             Clotho,
             Cerberus,
             Achilles,

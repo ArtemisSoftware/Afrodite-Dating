@@ -23,6 +23,7 @@ import com.artemissoftware.afroditedating.models.Message;
 import com.artemissoftware.afroditedating.models.User;
 import com.artemissoftware.afroditedating.settings.SettingsFragment;
 import com.artemissoftware.afroditedating.util.PreferenceKeys;
+import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
@@ -155,7 +156,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivity,
 
     private void setHeaderImage(){
         Log.d(TAG, "setHeaderImage: setting image");
-
+        Glide.with(this)
+                .load(R.drawable.aphrodite)
+                .into(mHeaderImage);
     }
 
 

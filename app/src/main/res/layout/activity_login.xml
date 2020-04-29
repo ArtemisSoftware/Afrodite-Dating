@@ -2,8 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,29 +11,28 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="matrix"
+            android:scaleType="centerCrop"
             android:alpha=".1"
             android:id="@+id/header_icon"
-            android:src="@drawable/heart_background"/>
+            android:src="@drawable/dating_background"/>
 
     </RelativeLayout>
 
 
-    <ImageView
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/tabian_dating_banner"
-        android:scaleType="centerCrop"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/heading"
+        android:layout_height="match_parent"
+        style="@style/viewParent.headerText"
+        android:text="Aphrodite Dating"
+        android:gravity="center"
         android:layout_above="@+id/logo"/>
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
         android:layout_centerInParent="true"
         android:id="@+id/logo"
-        android:src="@drawable/tabian_dating"
+        android:src="@drawable/aphrodite"
         android:layout_marginTop="20dp"/>
 
     <Button
@@ -45,7 +43,7 @@
         android:background="@drawable/blue_onclick_grey"
         android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         android:id="@+id/btn_login"/>
 
 </RelativeLayout>
