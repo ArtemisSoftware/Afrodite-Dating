@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         style="@style/viewParent.headerText"
-        android:text="Afrodite Dating"
+        android:text="Aphrodite Dating"
         android:gravity="center"
         android:layout_above="@+id/logo"/>
 
